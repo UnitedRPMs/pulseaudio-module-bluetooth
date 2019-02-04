@@ -123,7 +123,7 @@ Includes support for APTX, APTX-HD, AAC codecs, SBC, Sony LDAC (A2DP codec).
 %build
 
 %cmake -DCMAKE_BUILD_TYPE=Release \
-       -DFORCE_NOT_BUILD_LDAC=ON 
+       -DFORCE_NOT_BUILD_LDAC=ON .
 
 %make_build
 
