@@ -1,4 +1,4 @@
-%global commit0 4b0cde160c96f40d860fef267a6ded49ae045be0
+%global commit0 8a58314e73e88116ac868a2063d1c02d3a36c03d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
@@ -31,7 +31,7 @@
 Name:           pulseaudio-module-bluetooth
 Summary:        Bluetooth support for the PulseAudio sound server and extra codecs
 Version:        %{pa_major}%{?pa_minor:.%{pa_minor}}
-Release:        7%{?dist}
+Release:        8%{?dist}
 License:        LGPLv2+
 URL:            http://www.freedesktop.org/wiki/Software/PulseAudio
 Source0:	https://github.com/EHfive/pulseaudio-modules-bt/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
@@ -44,7 +44,7 @@ BuildRequires:	ffmpeg-devel
 BuildRequires:	fdk-aac-devel 
 BuildRequires:	pulseaudio-libs-devel = %{version}
 BuildRequires:	pulseaudio = %{version}
-BuildRequires:	ldacbt
+BuildRequires:	ldacbt-devel >= 2.0.2.3
 BuildRequires:	cmake
 BuildRequires:	git
 %global bash_completionsdir %(pkg-config --variable=completionsdir bash-completion 2>/dev/null || echo '/etc/bash_completion.d')
@@ -146,5 +146,9 @@ ctest -V %{?_smp_mflags}
 
 
 %changelog
-* Wed Jan 30 2019 - David Va <davidva AT tuta DOT io> 12.2-2
+
+* Tue Feb 19 2019 - David Va <davidva AT tuta DOT io> 12.2-8
+- Rebuilt for ldacbt
+
+* Wed Jan 30 2019 - David Va <davidva AT tuta DOT io> 12.2-7
 - Initial build
