@@ -1,4 +1,4 @@
-%global commit0 8a58314e73e88116ac868a2063d1c02d3a36c03d
+%global commit0 2fde9b79449661afd162f5d6eeeba49f80eba37a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
@@ -31,7 +31,7 @@
 Name:           pulseaudio-module-bluetooth
 Summary:        Bluetooth support for the PulseAudio sound server and extra codecs
 Version:        %{pa_major}%{?pa_minor:.%{pa_minor}}
-Release:        8%{?dist}
+Release:        9%{?dist}
 License:        LGPLv2+
 URL:            http://www.freedesktop.org/wiki/Software/PulseAudio
 Source0:	https://github.com/EHfive/pulseaudio-modules-bt/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
@@ -41,7 +41,7 @@ BuildRequires:  automake libtool
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig(bash-completion)
 BuildRequires:	ffmpeg-devel
-BuildRequires:	fdk-aac-devel 
+BuildRequires:	fdk-aac-free-devel 
 BuildRequires:	pulseaudio-libs-devel = %{version}
 BuildRequires:	pulseaudio = %{version}
 BuildRequires:	ldacbt-devel >= 2.0.2.3
@@ -146,6 +146,9 @@ ctest -V %{?_smp_mflags}
 
 
 %changelog
+
+* Sat Jun 22 2019 - David Va <davidva AT tuta DOT io> 12.2-9
+- Changed to fdk-aac-free
 
 * Tue Feb 19 2019 - David Va <davidva AT tuta DOT io> 12.2-8
 - Rebuilt for ldacbt
