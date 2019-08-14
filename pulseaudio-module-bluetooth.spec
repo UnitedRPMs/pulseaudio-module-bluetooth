@@ -42,8 +42,8 @@ BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig(bash-completion)
 BuildRequires:	ffmpeg-devel
 BuildRequires:	fdk-aac-free-devel 
-BuildRequires:	pulseaudio-libs-devel = %{version}
-BuildRequires:	pulseaudio = %{version}
+BuildRequires:	pulseaudio-libs-devel >= %{version}
+BuildRequires:	pulseaudio >= %{version}
 BuildRequires:	ldacbt-devel >= 2.0.2.3
 BuildRequires:	cmake
 BuildRequires:	git
