@@ -2,8 +2,11 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
-
+%if 0%{?fedora} >= 31
+%global pa_major   12.99
+%else
 %global pa_major   12.2
+%endif
 
 # webrtc bits go wonky without this
 # see also https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/JQQ66XJSIT2FGTK2YQY7AXMEH5IXMPUX/
