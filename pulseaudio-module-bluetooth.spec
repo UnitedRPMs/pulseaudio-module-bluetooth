@@ -104,10 +104,10 @@ BuildRequires:  pkgconfig(webrtc-audio-processing) >= 0.2
 BuildRequires:  pkgconfig(check)
 %endif
 
-Requires:       pulseaudio = %{version}
+Requires:       pulseaudio >= %{version}
 Requires:       bluez >= 5.0 
 Requires:	ffmpeg
-Requires:	fdk-aac
+Recommends:	fdk-aac-free
 Requires:	ldacbt
 Provides:	pulseaudio-module-bluetooth-aptx 
 
