@@ -1,4 +1,4 @@
-%global commit0 2fde9b79449661afd162f5d6eeeba49f80eba37a
+%global commit0 3ecf1d7dad74e39d65852b78531b79e2a7e72b5b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
@@ -31,7 +31,7 @@
 Name:           pulseaudio-module-bluetooth
 Summary:        Bluetooth support for the PulseAudio sound server and extra codecs
 Version:        %{pa_major}%{?pa_minor:.%{pa_minor}}
-Release:        9%{?dist}
+Release:        10%{?dist}
 License:        LGPLv2+
 URL:            http://www.freedesktop.org/wiki/Software/PulseAudio
 Source0:	https://github.com/EHfive/pulseaudio-modules-bt/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
@@ -146,6 +146,9 @@ ctest -V %{?_smp_mflags}
 
 
 %changelog
+
+* Tue Aug 13 2019 - David Va <davidva AT tuta DOT io> 12.2-10
+- A2DP_SINK_AAC sbc to aac
 
 * Sat Jun 22 2019 - David Va <davidva AT tuta DOT io> 12.2-9
 - Changed to fdk-aac-free
