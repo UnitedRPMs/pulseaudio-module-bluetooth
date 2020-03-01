@@ -1,10 +1,14 @@
-%global commit0 3ecf1d7dad74e39d65852b78531b79e2a7e72b5b
+%global commit0 5b546e1406383dcea345e142d8648cdd5625ce31
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
-%if 0%{?fedora} >= 31
-%global pa_major   12.99
-%else
+%if 0%{?fedora} >= 32
+%global pa_major   13.99
+%endif
+
+%global pa_major   13.0
+
+%if 0%{?fedora} <= 30
 %global pa_major   12.2
 %endif
 
@@ -34,7 +38,7 @@
 Name:           pulseaudio-module-bluetooth
 Summary:        Bluetooth support for the PulseAudio sound server and extra codecs
 Version:        %{pa_major}%{?pa_minor:.%{pa_minor}}
-Release:        10%{?dist}
+Release:        11%{?dist}
 License:        LGPLv2+
 URL:            http://www.freedesktop.org/wiki/Software/PulseAudio
 Source0:	https://github.com/EHfive/pulseaudio-modules-bt/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
@@ -149,6 +153,9 @@ ctest -V %{?_smp_mflags}
 
 
 %changelog
+
+* Fri Feb 28 2020 - David Va <davidva AT tuta DOT io> 13.99-10
+- Module Arguments updated
 
 * Tue Aug 13 2019 - David Va <davidva AT tuta DOT io> 12.2-10
 - A2DP_SINK_AAC sbc to aac

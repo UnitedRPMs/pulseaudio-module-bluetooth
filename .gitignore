@@ -5,3 +5,5 @@ SPECS/*
 SRPMS/*
 *.tar.gz
 .directory
+*.rpm
+.directory
