@@ -151,11 +151,12 @@ ctest -V %{?_smp_mflags}
 %ldconfig_postun
 
 %files
-%{_libdir}/pulse-%{pa_major}/modules/libbluez*-util.so
-%{_libdir}/pulse-%{pa_major}/modules/module-bluez*-device.so
-%{_libdir}/pulse-%{pa_major}/modules/module-bluez*-discover.so
-%{_libdir}/pulse-%{pa_major}/modules/module-bluetooth-discover.so
-%{_libdir}/pulse-%{pa_major}/modules/module-bluetooth-policy.so
+%{_libdir}/pulse-*/modules/libbluez*-util.so
+%{_libdir}/pulse-*/modules/module-bluez*-device.so
+%{_libdir}/pulse-*/modules/module-bluez*-discover.so
+%{_libdir}/pulse-*/modules/module-bluetooth-discover.so
+%{_libdir}/pulse-*/modules/module-bluetooth-policy.so
+
 
 
 %changelog
