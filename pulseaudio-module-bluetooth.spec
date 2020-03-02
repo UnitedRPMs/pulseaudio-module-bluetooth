@@ -41,11 +41,12 @@
 Name:           pulseaudio-module-bluetooth
 Summary:        Bluetooth support for the PulseAudio sound server and extra codecs
 Version:        %{pa_major}%{?pa_minor:.%{pa_minor}}
-Release:        11%{?dist}
+Release:        12%{?dist}
 License:        LGPLv2+
 URL:            http://www.freedesktop.org/wiki/Software/PulseAudio
 Source0:	https://github.com/EHfive/pulseaudio-modules-bt/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 Source1:	pulseaudio-module-bluetooth-snapshot
+Source2:	https://freedesktop.org/software/pulseaudio/releases/pulseaudio-%{pa_major}.tar.gz
 
 BuildRequires:  automake libtool
 BuildRequires:  gcc-c++
@@ -128,7 +129,9 @@ Includes support for APTX, APTX-HD, AAC codecs, SBC, Sony LDAC (A2DP codec).
 
 %prep
 %{S:1} -c %{commit0}
-%setup -T -D -n %{name}-%{shortcommit0} 
+%setup -T -D -a 2 -n %{name}-%{shortcommit0} 
+rm -rf pa
+mv pulseaudio-%{pa_major} pa
 
 %build
 
@@ -157,7 +160,7 @@ ctest -V %{?_smp_mflags}
 
 %changelog
 
-* Fri Feb 28 2020 - David Va <davidva AT tuta DOT io> 13.99-10
+* Fri Feb 28 2020 - David Va <davidva AT tuta DOT io> 13.99-12
 - Module Arguments updated
 
 * Tue Aug 13 2019 - David Va <davidva AT tuta DOT io> 12.2-10
