@@ -12,7 +12,7 @@
 %endif
 
 %if 0%{?fedora} >= 32
-%global pa_major   13.99
+%global pa_major   13.99.1
 %endif
 
 # webrtc bits go wonky without this
