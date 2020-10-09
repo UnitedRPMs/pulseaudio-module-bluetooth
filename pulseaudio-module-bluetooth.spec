@@ -7,7 +7,9 @@
 %define pa_major   12.2
 %endif
 
-%if 0%{?fedora} >= 31
+%if 0%{?fedora} >= 33
+%global pa_major   13.99.2
+%else
 %global pa_major   13.99.1
 %endif
 
@@ -37,7 +39,7 @@
 Name:           pulseaudio-module-bluetooth
 Summary:        Bluetooth support for the PulseAudio sound server and extra codecs
 Version:        %{pa_major}%{?pa_minor:.%{pa_minor}}
-Release:        12%{?dist}
+Release:        13%{?dist}
 License:        LGPLv2+
 URL:            http://www.freedesktop.org/wiki/Software/PulseAudio
 Source0:	https://github.com/EHfive/pulseaudio-modules-bt/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
@@ -156,6 +158,9 @@ ctest -V %{?_smp_mflags}
 
 
 %changelog
+
+* Thu Oct 08 2020 - David Va <davidva AT tuta DOT io> 13.99.2-13
+- Updated to 13.99.2
 
 * Fri Feb 28 2020 - David Va <davidva AT tuta DOT io> 13.99-12
 - Module Arguments updated
