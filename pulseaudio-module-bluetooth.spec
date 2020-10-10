@@ -2,14 +2,15 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
-
 %if 0%{?fedora} <= 30
 %define pa_major   12.2
 %endif
 
 %if 0%{?fedora} >= 33
 %global pa_major   13.99.2
-%else
+%endif
+
+%if 0%{?fedora} <= 32
 %global pa_major   13.99.1
 %endif
 
