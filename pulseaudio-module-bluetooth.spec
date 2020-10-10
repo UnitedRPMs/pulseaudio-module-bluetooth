@@ -133,13 +133,14 @@ mv pulseaudio-%{pa_major} pa
 
 %build
 
-%cmake -DCMAKE_BUILD_TYPE=Release \
-       -DFORCE_NOT_BUILD_LDAC=ON .
+mkdir -p %{_target_platform}
+%cmake -B %{_target_platform} -DCMAKE_BUILD_TYPE=Release \
+      -DFORCE_NOT_BUILD_LDAC=ON 
 
-%make_build
+%make_build -C %{_target_platform}
 
 %install
-%make_install
+%make_install -C %{_target_platform}
 
 %check
 ctest -V %{?_smp_mflags}
