@@ -12,10 +12,6 @@
 %endif
 
 %if 0%{?fedora} >= 33
-%global pa_major   13.99.2
-%endif
-
-%if 0%{?fedora} >= 34
 %global pa_major   14.0
 %endif
 
