@@ -42,7 +42,7 @@
 Name:           pulseaudio-module-bluetooth
 Summary:        Bluetooth support for the PulseAudio sound server and extra codecs
 Version:        %{pa_major}%{?pa_minor:.%{pa_minor}}
-Release:        14%{?dist}
+Release:        15%{?dist}
 License:        LGPLv2+
 URL:            http://www.freedesktop.org/wiki/Software/PulseAudio
 Source0:	https://github.com/EHfive/pulseaudio-modules-bt/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
@@ -56,7 +56,7 @@ BuildRequires:	ffmpeg-devel
 BuildRequires:	fdk-aac-free-devel 
 BuildRequires:	pulseaudio-libs-devel >= %{version}
 BuildRequires:	pulseaudio >= %{version}
-BuildRequires:	ldacbt-devel >= 2.0.2.3
+BuildRequires:	libldac-devel >= 2.0.2.3
 BuildRequires:	cmake
 BuildRequires:	git
 %global bash_completionsdir %(pkg-config --variable=completionsdir bash-completion 2>/dev/null || echo '/etc/bash_completion.d')
@@ -120,7 +120,7 @@ Requires:       pulseaudio >= %{version}
 Requires:       bluez >= 5.0 
 Requires:	ffmpeg
 Recommends:	fdk-aac-free
-Requires:	ldacbt
+Requires:	libldac
 Provides:	pulseaudio-module-bluetooth-aptx 
 
 %description
@@ -162,6 +162,9 @@ ctest -V %{?_smp_mflags}
 
 
 %changelog
+
+* Wed Apr 07 2021 - David Va <davidva AT tuta DOT io> 14.0-15
+- Rebuilt
 
 * Mon Nov 30 2020 - David Va <davidva AT tuta DOT io> 14.0-14
 - Updated to 14.0 for F34
