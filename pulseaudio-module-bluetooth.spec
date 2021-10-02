@@ -1,18 +1,18 @@
-%global commit0 75af4993efd1f3de5bb7f0238c4d38725944a8d1
+%global commit0 dbb5164232b5c582a385c923f85298eab28ffdcf
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
 
-%if 0%{?fedora} <= 30
-%define pa_major   12.2
-%endif
-
-%if 0%{?fedora} >= 31
-%global pa_major   13.99.1
-%endif
-
 %if 0%{?fedora} >= 33
 %global pa_major   14.0
+%endif
+
+%if 0%{?fedora} >= 34
+%global pa_major   14.2
+%endif
+
+%if 0%{?fedora} >= 35
+%global pa_major   15.0
 %endif
 
 
@@ -42,7 +42,7 @@
 Name:           pulseaudio-module-bluetooth
 Summary:        Bluetooth support for the PulseAudio sound server and extra codecs
 Version:        %{pa_major}%{?pa_minor:.%{pa_minor}}
-Release:        15%{?dist}
+Release:        16%{?dist}
 License:        LGPLv2+
 URL:            http://www.freedesktop.org/wiki/Software/PulseAudio
 Source0:	https://github.com/EHfive/pulseaudio-modules-bt/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
@@ -162,6 +162,9 @@ ctest -V %{?_smp_mflags}
 
 
 %changelog
+
+* Thu Sep 30 2021 - David Va <davidva AT tuta DOT io> 15.0-16
+- Added support 15.0
 
 * Wed Apr 07 2021 - David Va <davidva AT tuta DOT io> 14.0-15
 - Rebuilt
