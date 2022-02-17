@@ -2,6 +2,9 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
+%undefine __brp_check_rpaths
+%global __brp_check_rpaths %{nil}
+
 
 %if 0%{?fedora} >= 33
 %global pa_major   14.0
@@ -42,7 +45,7 @@
 Name:           pulseaudio-module-bluetooth
 Summary:        Bluetooth support for the PulseAudio sound server and extra codecs
 Version:        %{pa_major}%{?pa_minor:.%{pa_minor}}
-Release:        16%{?dist}
+Release:        17%{?dist}
 License:        LGPLv2+
 URL:            http://www.freedesktop.org/wiki/Software/PulseAudio
 Source0:	https://github.com/EHfive/pulseaudio-modules-bt/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
@@ -52,7 +55,7 @@ Source2:	https://freedesktop.org/software/pulseaudio/releases/pulseaudio-%{pa_ma
 BuildRequires:  automake libtool
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig(bash-completion)
-BuildRequires:	ffmpeg-devel
+BuildRequires:	ffmpeg4-devel
 BuildRequires:	fdk-aac-free-devel 
 BuildRequires:	pulseaudio-libs-devel >= %{version}
 BuildRequires:	pulseaudio >= %{version}
@@ -118,7 +121,6 @@ BuildRequires:  pkgconfig(check)
 
 Requires:       pulseaudio >= %{version}
 Requires:       bluez >= 5.0 
-Requires:	ffmpeg
 Recommends:	fdk-aac-free
 Requires:	libldac
 Provides:	pulseaudio-module-bluetooth-aptx 
@@ -136,14 +138,16 @@ mv pulseaudio-%{pa_major} pa
 
 %build
 
-mkdir -p %{_target_platform}
-%cmake -B %{_target_platform} -DCMAKE_BUILD_TYPE=Release \
-      -DFORCE_NOT_BUILD_LDAC=ON 
-
-%make_build -C %{_target_platform}
+mkdir -p build
+%cmake -B build -DCMAKE_INSTALL_PREFIX="/usr" \
+	-DCMAKE_INSTALL_LIBDIR=%{_libdir} \
+	-DCMAKE_INSTALL_FULL_LIBDIR=%{_lib} \
+	-DFORCE_NOT_BUILD_LDAC=ON 
+      
+%make_build -C build
 
 %install
-%make_install -C %{_target_platform}
+%make_install -C build
 
 %check
 ctest -V %{?_smp_mflags}
@@ -159,9 +163,10 @@ ctest -V %{?_smp_mflags}
 %{_libdir}/pulse-*/modules/module-bluetooth-discover.so
 %{_libdir}/pulse-*/modules/module-bluetooth-policy.so
 
-
-
 %changelog
+
+* Fri Feb 11 2022 - David Va <davidva AT tuta DOT io> 15.0-17
+- Rebuilt for ffmpeg
 
 * Thu Sep 30 2021 - David Va <davidva AT tuta DOT io> 15.0-16
 - Added support 15.0
